@@ -1,12 +1,8 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import HomeItem from "./components/HomeItem";
+import BagItem from "../components/BagItem";
+import BagSummary from "../components/BagSummary";
 
-
-
-function App() {
-
-  const item = {
+const Bag = () => {
+    const item = {
         id: '001',
         image: 'images/1.jpg',
         company: 'Carlton London',
@@ -21,18 +17,15 @@ function App() {
             count: 1400,
         },
     };
-
   return (
-    <>
-     <Header/>
-      <main>
-        <div className="items-container">
-          <HomeItem item={item}/>
-        </div>
-      </main>
-    <Footer />
-    </>
+    <main>
+      <div className="bag-page">
+        <div className="bag-items-container">
+          <BagItem item={item} />
+          </div> 
+        <BagSummary/>
+      </div>
+    </main>
   );
-}
-
-export default App;
+};
+export default Bag;
