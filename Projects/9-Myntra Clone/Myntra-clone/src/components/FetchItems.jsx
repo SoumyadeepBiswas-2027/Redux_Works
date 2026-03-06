@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { itemsActions } from "../store/ItemsSlice";
 
 const FetchItems = () => {
   const fetchStatus = useSelector((store) => store.fetchStatus);
@@ -16,8 +17,8 @@ const FetchItems = () => {
     fetch("http://localhost:8080/items",{signal})
       .then((res) => res.json())
       .then(({items}) => {   //problem
+        dispatch(itemsActions.addInitialItems(items[0]));
         
-        console.log("items fetched",items);
         // addInitialPosts(data.posts);
         //  setFetching(false);
       });

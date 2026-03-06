@@ -3,7 +3,7 @@ import HomeItem from "../components/HomeItem";
 
 const Home = () => {
   const items = useSelector((store) => store.items);
-  //console.log(items);
+  console.log("Got items",items);
   return (
     <main>
       <div className="items-container">
@@ -15,3 +15,6 @@ const Home = () => {
   );
 };
 export default Home;
+
+
+//data fething from server 
