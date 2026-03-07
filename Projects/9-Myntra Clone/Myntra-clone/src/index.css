@@ -383,3 +383,7 @@ a.action_container:link {
 
 /* problematic one below */
 a { color: black; }
+
+.spinner{
+    margin: 100px 0px;
+}
