@@ -2,10 +2,13 @@ import { IoPerson } from "react-icons/io5";
 import { RiHeartAddFill } from "react-icons/ri";
 import { IoBagAddSharp } from "react-icons/io5";
 import { Link } from "react-router";
-
-
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const bagItemCount = useSelector((store) => store.bag);
+
+ // console.log("Bag contains", bagItemCount);
+
   return (
     <header>
       <div className="logo_container">
@@ -37,7 +40,7 @@ const Header = () => {
 
       <div className="action_bar">
         <div className="action_container">
-           <IoPerson />
+          <IoPerson />
           <span className="action_name">Profile</span>
         </div>
 
@@ -49,7 +52,7 @@ const Header = () => {
         <Link className="action_container" to="/bag">
           <IoBagAddSharp />
           <span className="action_name">Bag</span>
-          <span className="bag-item-count">0</span>
+          <span className="bag-item-count">{bagItemCount.length}</span>
         </Link>
       </div>
     </header>

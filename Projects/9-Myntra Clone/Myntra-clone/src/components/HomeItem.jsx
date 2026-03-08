@@ -1,4 +1,22 @@
-const HomeItem = ({item}) => {
+import { useDispatch, useSelector } from "react-redux";
+import { bagActions } from "../store/bagSlice";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
+
+const HomeItem = ({ item }) => {
+  const dispatch = useDispatch();
+  const bagItems = useSelector((store) => store.bag);
+  const elementFound = bagItems.indexOf(item.id) >= 0;
+  console.log(item.id, elementFound);
+
+  const handleAddToBag = () => {
+    dispatch(bagActions.addToBag(item.id));
+  };
+
+  const handleRemove= () => {
+    dispatch(bagActions.removeFromBag(item.id));
+  };//search this out (problem: where removeFromBag is declared )
+
   return (
     <div className="item-container">
       <img className="item-image" src={item.image} alt="item image" />
@@ -12,9 +30,23 @@ const HomeItem = ({item}) => {
         <span className="original-price">Rs {item.original_price}</span>
         <span className="discount">({item.discount_percentage}% OFF)</span>
       </div>
-      <button className="btn-add-bag" onClick={() => console.log("item was clicked")}>
+      {/* <button className="btn-add-bag" onClick={handleAddToBag}>
         Add to Bag
-      </button>
+      </button> */}
+
+      {elementFound ? (
+        <button type="button" className="btn btn-add-bag btn-secondary" onClick={handleRemove}>
+          <MdDelete /> Remove
+        </button>
+      ) : (
+        <button
+          type="button"
+          className="btn btn-add-bag btn-success"
+          onClick={handleAddToBag}
+        >
+          <IoMdAddCircleOutline /> Add to Bag
+        </button>
+      )}
     </div>
   );
 };
